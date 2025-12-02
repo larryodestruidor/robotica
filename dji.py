@@ -1,6 +1,6 @@
 from djitellopy import Tello
 from time import sleep
-
+TEMPO_ESPERA=0
 percurso = []
 tello = Tello()
 tello.connect()
@@ -27,18 +27,18 @@ def a_a():
 
 def m_f_i():
     global y
-    tello.move_forward(50)
-    y += 50
+    tello.move_forward(100)
+    y += 100
 
 def m_f_p():
     global y
-    tello.move_forward(50)
-    y -= 50
+    tello.move_forward(100)
+    y -= 100
 
 def abc():
-    tello.move_forward(50)
+    tello.move_forward(100)
     global x
-    x += 50
+    x += 100
 
 def am_alt():
     tello.move_up(30)
@@ -51,8 +51,8 @@ def r_e():
 
 battery = p_bat()
 
-if battery < 50:
-    print("Bateria com menos de 50%, troque imediatamente.")
+if battery < 100:
+    print("Bateria com menos de 100%, troque imediatamente.")
 else:
     p_bat()
 
@@ -64,34 +64,34 @@ a_i()
 
 for j in range(1, 7):
     if j % 2 != 0:
-        for i in range(1, 7):
+        for i in range(1, 4):
             m_f_i()
             a_a()
-            sleep(0.25)
+            sleep(TEMPO_ESPERA)
             if abs(alt_a - alt_i) > 20:
                 print(x,",", y,"; cm")
             else:
                 continue
-        sleep(0.25)
+        sleep(TEMPO_ESPERA)
         r_d()
-        sleep(0.25)
+        sleep(TEMPO_ESPERA)
         abc()
-        sleep(0.25)
+        sleep(TEMPO_ESPERA)
         r_d()
     else:
-        for i in range(1, 7):
+        for i in range(1, 4):
             m_f_p()
             a_a()
-            sleep(0.25)
+            sleep(TEMPO_ESPERA)
             if abs(alt_a - alt_i) > 20:
                 print(x,",", y,"; cm")
             else:
                 continue
-        sleep(0.25)
+        sleep(TEMPO_ESPERA)
         r_e()
-        sleep(0.25)
+        sleep(TEMPO_ESPERA)
         abc()
-        sleep(0.25)
+        sleep(TEMPO_ESPERA)
         r_e()
 
 tello.land()
